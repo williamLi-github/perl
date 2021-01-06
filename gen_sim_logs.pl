@@ -87,18 +87,13 @@ sub obtain_sim_status {
 
 sub adjust_out_dir {
 	my $dir_ref = shift;
-	
-	
+	$$dir_ref =~ s#\$|/$##g;
+	if(-e $$dir_ref) {
+		unlink glob("$$dir_ref/*");
+		print "${tab}[DEBUG] -- $$dir_ref dir exist and complete to clean up its content\n\n";
+	}
+	else {
+		mkdir "$$dir_ref" . 0755 or die "Can not creat $$dir_ref!\n";
+		print "${tab}[DEBUG] -- $$dir_ref dir do not exist and complete to creat it\n\n";
+	}
 }
-
-
-
-
-
-
-
-
-
-
-
-
