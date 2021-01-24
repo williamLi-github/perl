@@ -22,7 +22,7 @@ $str .= "#      \n";
 $str .= "#      \n";
 $str .= "#                                           \n";
 $str .= "# Author:                                   \n";
-$str .= "#     WilliamLi \n";
+$str .= "#     williamLi-github@github.com    WilliamLi \n";
 $str .= "# ------------------------------------------\n";
 $str .= "#  $file_name    \n";
 print LOG $str;
