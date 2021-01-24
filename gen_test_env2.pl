@@ -143,7 +143,7 @@ sub gen_one_stream_file {
 	print "${tab}[INFO] -- the test stream file $name for $case case has been generated\n\n";
 }
 
-sub help_masg {
+sub help_msg {
 	my $str = "";
 	# system("pod2text $0");  # for help info in pod format
 	print "\n$0 used to generate the test environment for the prepare test patterns for ip deliver script\n\n";
