@@ -102,7 +102,46 @@ sub gen_case_list {
 }
 
 
+sub gen_cfg_files {
+	my ($dir, $list_ref) = @_;
+	print "[INFO] -- start to generate cfg files \n\n";
+	foreach my $case (@$list_ref) {
+		$case =~ s/^case_//;
+		my $cur_dir   = "${dir}/log_case_${case}";
+		my $cfg_file   = "${cur_dir}/test.cfg";
+		&adjust_dir($cur_dir);
+		&gen_cfg_content($case, $cfg_file);
+	}
+	print "[INFO] -- complete to generate cfg files into $dir dir\n\n";
+}
 
+sub gen_cfg_content {
+	my ($cur_case, $cfg_file) = @_;
+	system("touch $cfg_file");
+	system("echo 'this is the cfg file for $cur_case case' > $cfg_file");
+	print "${tab}[INFO] -- the cfg file $cfg_file for $cur_case case has been generated\n\n";
+}
+
+
+sub gen_test_streams {
+	my ($dir, $list_ref) = @_;
+	print "[INFO] -- start to generatethe test streams files\n\n";
+	foreach my $cur_case(@$list_ref) {
+		$cur_case =~ s/^case_//;
+		my $cur_dir = "${dir}/case_${cur_case}";
+		my $stream_name = "${cur_dir}/stream.mpeg2";
+		&adjust_dir($cur_dir);
+		&gen_one_stream_file($cur_case, $stream_name);
+	}
+	print "[INFO] -- complete to generate the test stream files to $dir dir \n\n";
+}
+
+sub gen_one_stream_file {
+	my ($case, $name) = @_;
+	system("touch $name");
+	system("echo 'this is the test stream file for $case case' > $name");
+	print "${tab}[INFO] -- the test stream file $name for $case case has been generated\n\n";
+}
 
 sub help_masg {
 	my $str = "";
